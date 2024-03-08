@@ -4,9 +4,15 @@ class MovieCard extends React.Component {
   // Add the addStars method here
 
   render() {
-    console.log(this.props);
-    const { addStars, minusStars, movies, movies: data } = this.props;
-    console.log(data);
+    const {
+      handleFav,
+      handleCart,
+      addStars,
+      minusStars,
+      movies,
+      movies: data,
+    } = this.props;
+    // console.log(data);
     const { title, poster, plot, price, rating, stars, fav, cart } = data;
 
     return (
@@ -31,7 +37,9 @@ class MovieCard extends React.Component {
                   src='https://cdn-icons-png.flaticon.com/128/1828/1828779.png'
                   alt='decrease'
                   className='str-btn'
-                  onClick={() => {minusStars(movies)}}
+                  onClick={() => {
+                    minusStars(movies);
+                  }}
                 />
                 <img
                   src='https://cdn-icons-png.flaticon.com/128/1828/1828884.png'
@@ -51,13 +59,13 @@ class MovieCard extends React.Component {
 
               <button
                 className={fav ? 'unfavourite-btn' : 'favourite-btn'}
-                onClick={this.handleFav}>
+                onClick={handleFav}>
                 {fav ? 'UnFavourite' : 'Favourite'}
               </button>
 
               <button
                 className={cart ? 'uncart-btn' : 'cart-btn'}
-                onClick={this.handleCart}>
+                onClick={handleCart}>
                 {cart ? 'Remove From Cart' : 'Add To Cart'}
               </button>
             </div>

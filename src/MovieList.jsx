@@ -7,6 +7,7 @@ class MovieList extends React.Component {
     this.state = {
       movies: [
         {
+          id: 1,
           title: 'The Avengers',
           plot: "Earth's mightiest heroes must come together and learn to fight as a team if they are going to stop the mischievous Loki and his alien army from enslaving humanity.",
           poster:
@@ -18,6 +19,7 @@ class MovieList extends React.Component {
           cart: false,
         },
         {
+          id: 2,
           title: 'The Dark Knight',
           plot: 'When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.',
           poster:
@@ -29,6 +31,7 @@ class MovieList extends React.Component {
           cart: false,
         },
         {
+          id: 3,
           title: 'Iron Man',
           plot: 'After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.',
           poster:
@@ -69,6 +72,26 @@ class MovieList extends React.Component {
     });
   };
 
+  handleToggleCart = (movie) => {
+    const { movies } = this.state;
+    const mId = movies.indexOf(movie);
+    movies[mId].cart = !movies[mId].cart;
+
+    this.setState({
+      movies,
+    });
+  };
+
+  handleToggleFav = (movie) => {
+    const { movies } = this.state;
+    const mId = movies.indexOf(movie);
+    movies[mId].fav = !movies[mId].fav;
+
+    this.setState({
+      movies,
+    });
+  };
+
   render() {
     const { movies } = this.state;
 
@@ -79,6 +102,9 @@ class MovieList extends React.Component {
             movies={movie}
             addStars={this.handleIncStar}
             minusStars={this.handleDecStar}
+            handleCart={() => this.handleToggleCart(movie)}
+            handleFav={() => this.handleToggleFav(movie)}
+            key={movie.id}
           />
         ))}
       </>
